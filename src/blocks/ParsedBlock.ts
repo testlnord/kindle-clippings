@@ -11,7 +11,7 @@ import type { RawBlock } from './RawBlock';
 moment.suppressDeprecationWarnings = true;
 
 export const EntryTypeTranslations = {
-  NOTE: ['note', 'nota', '的笔记'],
+  NOTE: ['note', 'nota', '的笔记', 'заметка', 'Notiz'],
   HIGHLIGHT: [
     'highlight',
     'subrayado', // Spanish
@@ -19,8 +19,10 @@ export const EntryTypeTranslations = {
     '的标注', // Chinese
     'destaque', // Portugese
     'evidenziazione', // Italian
+    'выделенный отрывок', // Russian
+    'Markierung' // German
   ],
-  BOOKMARK: ['bookmark', 'marcador', 'signet', '的书签'],
+  BOOKMARK: ['bookmark', 'marcador', 'signet', '的书签', 'закладка', 'Zeichen'],
   DIVIDERS: ['页'],
 };
 
@@ -43,7 +45,7 @@ export const parseToUtcDate = (serializedDate: string): Date | undefined => {
     return parseAsEn.toDate();
   }
 
-  for (const locale of ['it', 'fr', 'es', 'pt']) {
+  for (const locale of ['it', 'fr', 'es', 'pt', 'ru', 'de']) {
     const parseAsI18l = moment.utc(serializedDate, 'LL LTS', locale);
     if (parseAsI18l.isValid()) {
       return parseAsI18l.toDate();
